@@ -50,7 +50,7 @@ public class Crud {
             try (ResultSet result = stmt.executeQuery()) {
 
                 while (result.next()) {
-                    Aluno aux = new Aluno(result.getString("cpf"), result.getString("nome"), result.getString("dataNascimento"), result.getFloat("peso"), result.getFloat("altura"));
+                    Aluno aux = new Aluno(result.getInt("id"), result.getString("cpf"), result.getString("nome"), result.getString("dataNascimento"), result.getFloat("peso"), result.getFloat("altura"));
                     alunos.add(aux);
                 }
             } catch (SQLException exception) {

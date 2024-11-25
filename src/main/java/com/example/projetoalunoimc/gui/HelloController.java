@@ -59,6 +59,9 @@ public class HelloController {
     @FXML
     private Button btnExcluir;
 
+    @FXML
+    private Button btnIMC;
+
 
     @FXML
     public void initialize() throws SQLException {
@@ -140,11 +143,8 @@ public class HelloController {
 
     public void incluirAluno() throws SQLException {
         if ((cpf.getText() != "")&&(nome.getText() != "")&&(dataNascimento.getText() != "")&&(peso.getText() != "")&&(altura.getText() != "")) {
-            this.aluno.setCpf(cpf.getText());
-            this.aluno.setNome(nome.getText());
-            this.aluno.setDataNascimento(dataNascimento.getText());
-            this.aluno.setPeso(Float.parseFloat(peso.getText()));
-            this.aluno.setAltura(Float.parseFloat(altura.getText()));
+            
+            this.aluno = new Aluno(0, cpf.getText(), nome.getText(), dataNascimento.getText(), Float.parseFloat(peso.getText()), Float.parseFloat(altura.getText()));
 
             Aluno.inserirAluno(this.aluno);
 
@@ -158,7 +158,7 @@ public class HelloController {
             this.aluno.setNome(nome.getText());
             this.aluno.setDataNascimento(dataNascimento.getText());
             this.aluno.setPeso(Float.parseFloat(peso.getText()));
-            this.aluno.setPeso(Float.parseFloat(peso.getText()));
+            this.aluno.setAltura(Float.parseFloat(peso.getText()));
 
             Aluno.atualizarAluno(this.aluno);
 

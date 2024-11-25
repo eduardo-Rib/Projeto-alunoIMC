@@ -39,6 +39,7 @@
         <Button text="Incluir" fx:id="btnIncluir" />
         <Button text="Editar" fx:id="btnEditar" />
         <Button text="Excluir" fx:id="btnExcluir" />
+        <Button text="IMC" fx:id="btnIMC" />
         <Button text="Limpar" fx:id="btnLimpar" />
     </HBox>
 </VBox>

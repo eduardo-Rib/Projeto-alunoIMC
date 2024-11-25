@@ -2,7 +2,12 @@ package com.example.projetoalunoimc.modelo;
 
 import com.example.projetoalunoimc.dao.Crud;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Aluno {
@@ -13,7 +18,8 @@ public class Aluno {
     private float peso;
     private float altura;
 
-    public Aluno(String cpf, String nome, String dataNascimento, float peso, float altura) {
+    public Aluno(int id, String cpf, String nome, String dataNascimento, float peso, float altura) {
+        this.id = id;
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -75,7 +81,7 @@ public class Aluno {
     }
 
     public static void excluirAluno(Aluno aluno){
-        String sql= "DELETE FROM aluno WHERE cpf = ?";
+        String sql= "DELETE FROM aluno WHERE id = ?";
         Crud.insertDeleteUpdate(sql, aluno, 2);
     }
 
@@ -88,4 +94,7 @@ public class Aluno {
         String sql= "SELECT * FROM aluno";
         return Crud.select(sql, aluno);
     }
+
+
+
 }
