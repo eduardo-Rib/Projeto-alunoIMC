@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Aluno {
+    private int id;
     private String cpf;
     private String nome;
     private String dataNascimento;
@@ -18,6 +19,14 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
         this.peso = peso;
         this.altura = altura;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCpf() {
