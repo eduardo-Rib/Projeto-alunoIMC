@@ -65,9 +65,24 @@ public class HelloController {
         carregarTableView();
 
         // Inicializações ou ações ao carregar a interface
-        btnIncluir.setOnAction(e -> System.out.println("Incluir clicado!"));
-        btnEditar.setOnAction(e -> System.out.println("Editar clicado!"));
+        btnIncluir.setOnAction(e -> {
+            try {
+                incluirAluno();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        btnEditar.setOnAction(e -> {
+            try {
+                atualizarSelecionado();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         btnLimpar.setOnAction(e -> limpaTextField());
+
         btnExcluir.setOnAction(e -> {
             try {
                 excluirSelecionado();
@@ -113,6 +128,7 @@ public class HelloController {
         dataNascimento.setText("");
         peso.setText("");
         altura.setText("");
+        this.aluno = null;
     }
 
     public void excluirSelecionado() throws SQLException {
@@ -121,6 +137,22 @@ public class HelloController {
             acaoPadrao();
         }
     }
+
+    public void incluirAluno() throws SQLException {
+        if ((cpf.getText() != "")&&(nome.getText() != "")&&(dataNascimento.getText() != "")&&(peso.getText() != "")&&(altura.getText() != "")) {
+            this.aluno.setCpf(cpf.getText());
+            this.aluno.setNome(nome.getText());
+            this.aluno.setDataNascimento(dataNascimento.getText());
+            this.aluno.setPeso(Float.parseFloat(peso.getText()));
+            this.aluno.setAltura(Float.parseFloat(altura.getText()));
+
+            Aluno.inserirAluno(this.aluno);
+
+            acaoPadrao();
+        }
+    }
+
+    
 
     public void acaoPadrao() throws SQLException {
         limpaTextField();

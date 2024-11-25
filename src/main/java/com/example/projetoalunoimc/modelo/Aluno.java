@@ -80,7 +80,7 @@ public class Aluno {
     }
 
     public static void atualizarAluno(Aluno aluno){
-        String sql= "UPDATE aluno SET nome = ?, dataNascimento = ?, peso = ?, altura = ? WHERE cpf = ?";
+        String sql= "UPDATE aluno SET cpf = ?, nome = ?, dataNascimento = ?, peso = ?, altura = ? WHERE id = ?";
         Crud.insertDeleteUpdate(sql, aluno, 3);
     }
 
