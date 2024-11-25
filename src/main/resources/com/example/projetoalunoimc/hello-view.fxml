@@ -38,8 +38,8 @@
     <HBox spacing="10">
         <Button text="Incluir" fx:id="btnIncluir" />
         <Button text="Editar" fx:id="btnEditar" />
-        <Button text="Limpar" fx:id="btnLimpar" />
         <Button text="Excluir" fx:id="btnExcluir" />
+        <Button text="Limpar" fx:id="btnLimpar" />
     </HBox>
 </VBox>
 

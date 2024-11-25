@@ -35,8 +35,7 @@ public class HelloController {
     @FXML
     private TableColumn<Aluno, Float> columnAltura;
 
-    private ObservableList<Aluno> obsAlunos;
-    private List<Aluno> alunos = new ArrayList<>();
+    private Aluno aluno = null;
 
     @FXML
     private TextField cpf;
@@ -74,12 +73,23 @@ public class HelloController {
         btnIncluir.setOnAction(e -> System.out.println("Incluir clicado!"));
         btnEditar.setOnAction(e -> System.out.println("Editar clicado!"));
         btnLimpar.setOnAction(e -> limpaTextField());
-        btnExcluir.setOnAction(e -> System.out.println("Excluir clicado!"));
+        btnExcluir.setOnAction(e -> {
+            try {
+                excluirSelecionado();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selecionarItemDaTableView(newValue));
     }
 
     public void carregarTableView() throws SQLException {
+        tableView.getItems().clear();
+
+        ObservableList<Aluno> obsAlunos;
+        List<Aluno> alunos = new ArrayList<>();
+
         // Configurando as colunas
         columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -88,12 +98,13 @@ public class HelloController {
         columnAltura.setCellValueFactory(new PropertyValueFactory<>("altura"));
 
         // Inicializando a lista de alunos
-        alunos = Aluno.consultarAluno(null, 2);
+        alunos = Aluno.consultarAluno(null);
         obsAlunos = FXCollections.observableArrayList(alunos);
         tableView.setItems(obsAlunos);
     }
 
     public void selecionarItemDaTableView(Aluno aluno){
+        this.aluno = aluno;
         cpf.setText(aluno.getCpf());
         nome.setText(aluno.getNome());
         dataNascimento.setText(aluno.getDataNascimento());
@@ -108,4 +119,17 @@ public class HelloController {
         peso.setText("");
         altura.setText("");
     }
+
+    public void excluirSelecionado() throws SQLException {
+        if (this.aluno != null) {
+            Aluno.excluirAluno(this.aluno);
+            acaoPadrao();
+        }
+    }
+
+    public void acaoPadrao() throws SQLException {
+        limpaTextField();
+        carregarTableView();
+    }
+
 }

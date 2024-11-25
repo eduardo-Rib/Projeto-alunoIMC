@@ -75,12 +75,8 @@ public class Aluno {
         Crud.insertDeleteUpdate(sql, aluno, 3);
     }
 
-    public static List<Aluno> consultarAluno(Aluno aluno, int n) throws SQLException {
-        String sql= "SELECT * FROM aluno WHERE cpf = ?";
-
-        if (n != 1){
-            sql = "SELECT * FROM aluno";
-        }
-        return Crud.select(sql, aluno, n);
+    public static List<Aluno> consultarAluno(Aluno aluno) throws SQLException {
+        String sql= "SELECT * FROM aluno";
+        return Crud.select(sql, aluno);
     }
 }
