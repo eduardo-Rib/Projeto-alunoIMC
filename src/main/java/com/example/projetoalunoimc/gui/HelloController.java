@@ -152,7 +152,19 @@ public class HelloController {
         }
     }
 
-    
+    public void atualizarSelecionado() throws SQLException {
+        if (this.aluno != null) {
+            this.aluno.setCpf(cpf.getText());
+            this.aluno.setNome(nome.getText());
+            this.aluno.setDataNascimento(dataNascimento.getText());
+            this.aluno.setPeso(Float.parseFloat(peso.getText()));
+            this.aluno.setPeso(Float.parseFloat(peso.getText()));
+
+            Aluno.atualizarAluno(this.aluno);
+
+            acaoPadrao();
+        }
+    }
 
     public void acaoPadrao() throws SQLException {
         limpaTextField();
