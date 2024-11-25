@@ -18,27 +18,27 @@
 
     <!-- Formulário com Labels e TextFields -->
     <GridPane hgap="10" vgap="10">
-        <Label text="Campo 1:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="textField1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="CPF:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="cpf" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-        <Label text="Campo 2:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="textField2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="nome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="Campo 3:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField fx:id="textField3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Data Nascismento:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="dataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Campo 4:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="textField4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Peso:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="peso" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <Label text="Campo 5:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <TextField fx:id="textField5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="Altura:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="altura" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     </GridPane>
 
     <!-- Botões -->
     <HBox spacing="10">
         <Button text="Incluir" fx:id="btnIncluir" />
         <Button text="Editar" fx:id="btnEditar" />
-        <Button text="Carregar" fx:id="btnCarregar" />
+        <Button text="Limpar" fx:id="btnLimpar" />
         <Button text="Excluir" fx:id="btnExcluir" />
     </HBox>
 </VBox>

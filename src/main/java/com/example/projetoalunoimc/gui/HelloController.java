@@ -2,6 +2,7 @@ package com.example.projetoalunoimc.gui;
 import com.example.projetoalunoimc.modelo.Aluno;
 import com.example.projetoalunoimc.modelo.Colunas;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -9,12 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
+    @FXML
     private TableView<Aluno> tableView;
 
     @FXML
@@ -32,6 +35,8 @@ public class HelloController {
     @FXML
     private TableColumn<Aluno, Float> columnAltura;
 
+    private ObservableList<Aluno> obsAlunos;
+    private List<Aluno> alunos = new ArrayList<>();
 
     @FXML
     private TextField cpf;
@@ -55,32 +60,35 @@ public class HelloController {
     private Button btnEditar;
 
     @FXML
-    private Button btnCarregar;
+    private Button btnLimpar;
 
     @FXML
     private Button btnExcluir;
 
+
     @FXML
     public void initialize() throws SQLException {
-        // Configurando as colunas
-        /*columnCpf.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCpf()));
-        columnNome.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getNome()));
-        columnDataNascimento.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getDataNascimento()));
-        columnPeso.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPeso()));
-        columnAltura.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAltura()));*/
-
-        // Inicializando a lista de alunos
-        ObservableList<Aluno> alunos;
-        alunos = FXCollections.observableArrayList(Aluno.consultarAluno(null, 2));
-        tableView.setItems(alunos);
-
-
+        carregarTableView();
 
         // Inicializações ou ações ao carregar a interface
         btnIncluir.setOnAction(e -> System.out.println("Incluir clicado!"));
         btnEditar.setOnAction(e -> System.out.println("Editar clicado!"));
-        btnCarregar.setOnAction(e -> System.out.println("Carregar clicado!"));
+        btnLimpar.setOnAction(e -> System.out.println("limpar textfilds!"));
         btnExcluir.setOnAction(e -> System.out.println("Excluir clicado!"));
+    }
+
+    public void carregarTableView() throws SQLException {
+        // Configurando as colunas
+        columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnDataNascimento.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        columnPeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
+        columnAltura.setCellValueFactory(new PropertyValueFactory<>("altura"));
+
+        // Inicializando a lista de alunos
+        alunos = Aluno.consultarAluno(null, 2);
+        obsAlunos = FXCollections.observableArrayList(alunos);
+        tableView.setItems(obsAlunos);
     }
 
 
