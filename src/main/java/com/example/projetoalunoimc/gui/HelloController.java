@@ -73,7 +73,7 @@ public class HelloController {
         // Inicializações ou ações ao carregar a interface
         btnIncluir.setOnAction(e -> System.out.println("Incluir clicado!"));
         btnEditar.setOnAction(e -> System.out.println("Editar clicado!"));
-        btnLimpar.setOnAction(e -> System.out.println("limpar textfilds!"));
+        btnLimpar.setOnAction(e -> limpaTextField());
         btnExcluir.setOnAction(e -> System.out.println("Excluir clicado!"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selecionarItemDaTableView(newValue));
@@ -99,5 +99,13 @@ public class HelloController {
         dataNascimento.setText(aluno.getDataNascimento());
         peso.setText(String.valueOf(aluno.getPeso()));
         altura.setText(String.valueOf(aluno.getAltura()));
+    }
+
+    public void limpaTextField() {
+        cpf.setText("");
+        nome.setText("");
+        dataNascimento.setText("");
+        peso.setText("");
+        altura.setText("");
     }
 }
