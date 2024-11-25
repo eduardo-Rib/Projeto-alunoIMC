@@ -4,13 +4,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="389.0" prefWidth="526.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.projetoalunoimc.gui.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <children>
-      <ListView id="tabelaAlunos" editable="true" prefHeight="200.0" prefWidth="470.0" />
-      <Label id="labelNome" text="Nome:" />
-      <Label alignment="BOTTOM_LEFT" text="CPF:" />
-   </children>
+<VBox alignment="TOP_LEFT" prefHeight="389.0" prefWidth="526.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.projetoalunoimc.gui.HelloController">
+    <!-- TableView -->
+    <TableView fx:id="tableView" prefHeight="200">
+        <columns>
+            <TableColumn text="CPF" fx:id="columnCpf" />
+            <TableColumn text="Nome" fx:id="columnNome" />
+            <TableColumn text="Data de Nascimento" fx:id="columnDataNascimento" />
+            <TableColumn text="Peso" fx:id="columnPeso" />
+            <TableColumn text="Altura" fx:id="columnAltura" />
+        </columns>
+    </TableView>
+
+    <!-- Formulário com Labels e TextFields -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Campo 1:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="textField1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Campo 2:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="textField2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Campo 3:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="textField3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Campo 4:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="textField4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Campo 5:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="textField5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    </GridPane>
+
+    <!-- Botões -->
+    <HBox spacing="10">
+        <Button text="Incluir" fx:id="btnIncluir" />
+        <Button text="Editar" fx:id="btnEditar" />
+        <Button text="Carregar" fx:id="btnCarregar" />
+        <Button text="Excluir" fx:id="btnExcluir" />
+    </HBox>
 </VBox>
+
+
