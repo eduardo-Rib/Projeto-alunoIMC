@@ -1,11 +1,6 @@
 package com.example.projetoalunoimc.gui;
 import com.example.projetoalunoimc.modelo.Aluno;
-import com.example.projetoalunoimc.modelo.Colunas;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
