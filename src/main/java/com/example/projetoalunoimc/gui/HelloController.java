@@ -1,4 +1,4 @@
-package com.example.projetoalunoimc;
+package com.example.projetoalunoimc.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
