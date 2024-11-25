@@ -75,6 +75,8 @@ public class HelloController {
         btnEditar.setOnAction(e -> System.out.println("Editar clicado!"));
         btnLimpar.setOnAction(e -> System.out.println("limpar textfilds!"));
         btnExcluir.setOnAction(e -> System.out.println("Excluir clicado!"));
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selecionarItemDaTableView(newValue));
     }
 
     public void carregarTableView() throws SQLException {
@@ -91,6 +93,11 @@ public class HelloController {
         tableView.setItems(obsAlunos);
     }
 
-
-
+    public void selecionarItemDaTableView(Aluno aluno){
+        cpf.setText(aluno.getCpf());
+        nome.setText(aluno.getNome());
+        dataNascimento.setText(aluno.getDataNascimento());
+        peso.setText(String.valueOf(aluno.getPeso()));
+        altura.setText(String.valueOf(aluno.getAltura()));
+    }
 }
