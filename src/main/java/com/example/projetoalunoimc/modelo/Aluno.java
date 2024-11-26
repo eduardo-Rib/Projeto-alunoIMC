@@ -95,6 +95,42 @@ public class Aluno {
         return Crud.select(sql, aluno);
     }
 
+    public void calculaIMC() {
+        double imc = peso / (altura * altura);
+        String interpretacao = interpretarIMC(imc);
+        String dataAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
+        // Nome do arquivo por CPF
+        String nomeArquivo = cpf + ".txt";
+
+        // Registro do cálculo
+        String registro = String.format(
+                "Data: %s%nCPF: %s%nNome: %s%nIMC: %.2f%nInterpretação: %s%n%n",
+                dataAtual, cpf, nome, imc, interpretacao
+        );
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, true))) {
+            writer.write(registro);
+            System.out.println("Cálculo gravado com sucesso no arquivo: " + nomeArquivo);
+        } catch (IOException e) {
+            System.err.println("Erro ao gravar o arquivo: " + e.getMessage());
+        }
+    }
+
+    private String interpretarIMC(double imc) {
+        if (imc < 18.5) {
+            return "Abaixo do peso";
+        } else if (imc < 24.9) {
+            return "Peso normal";
+        } else if (imc < 29.9) {
+            return "Sobrepeso";
+        } else if (imc < 34.9) {
+            return "Obesidade Grau 1";
+        } else if (imc < 39.9) {
+            return "Obesidade Grau 2";
+        } else {
+            return "Obesidade Grau 3";
+        }
+    }
 
 }

@@ -94,6 +94,14 @@ public class HelloController {
             }
         });
 
+        btnIMC.setOnAction(e -> {
+            try {
+                calculaIMC();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> selecionarItemDaTableView(newValue));
     }
 
@@ -117,12 +125,14 @@ public class HelloController {
     }
 
     public void selecionarItemDaTableView(Aluno aluno){
-        this.aluno = aluno;
-        cpf.setText(aluno.getCpf());
-        nome.setText(aluno.getNome());
-        dataNascimento.setText(aluno.getDataNascimento());
-        peso.setText(String.valueOf(aluno.getPeso()));
-        altura.setText(String.valueOf(aluno.getAltura()));
+        if (aluno != null) {
+            this.aluno = aluno;
+            cpf.setText(aluno.getCpf());
+            nome.setText(aluno.getNome());
+            dataNascimento.setText(aluno.getDataNascimento());
+            peso.setText(String.valueOf(aluno.getPeso()));
+            altura.setText(String.valueOf(aluno.getAltura()));
+        }
     }
 
     public void limpaTextField() {
@@ -143,7 +153,7 @@ public class HelloController {
 
     public void incluirAluno() throws SQLException {
         if ((cpf.getText() != "")&&(nome.getText() != "")&&(dataNascimento.getText() != "")&&(peso.getText() != "")&&(altura.getText() != "")) {
-            
+
             this.aluno = new Aluno(0, cpf.getText(), nome.getText(), dataNascimento.getText(), Float.parseFloat(peso.getText()), Float.parseFloat(altura.getText()));
 
             Aluno.inserirAluno(this.aluno);
@@ -158,11 +168,17 @@ public class HelloController {
             this.aluno.setNome(nome.getText());
             this.aluno.setDataNascimento(dataNascimento.getText());
             this.aluno.setPeso(Float.parseFloat(peso.getText()));
-            this.aluno.setAltura(Float.parseFloat(peso.getText()));
+            this.aluno.setAltura(Float.parseFloat(altura.getText()));
 
             Aluno.atualizarAluno(this.aluno);
 
             acaoPadrao();
+        }
+    }
+
+    public void calculaIMC() throws SQLException {
+        if (this.aluno != null) {
+            this.aluno.calculaIMC();
         }
     }
 
